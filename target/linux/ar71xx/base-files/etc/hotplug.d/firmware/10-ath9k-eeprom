@@ -95,6 +95,10 @@ case "$FIRMWARE" in
 		ath9k_eeprom_extract "caldata" 4096 2048
 		ath9k_patch_firmware_mac $(mtd_get_mac_binary caldata 0)
 		;;
+        wifi-pineapple-tetra)
+		ath9k_eeprom_extract "caldata" 4096 2048
+		ath9k_patch_firmware_mac $(mtd_get_mac_binary caldata 12)
+		;;
 	rambutan)
 		ath9k_eeprom_extract "art" 4096 2048
 		;;

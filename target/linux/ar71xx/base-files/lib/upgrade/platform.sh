@@ -582,6 +582,10 @@ platform_check_image() {
 		nand_do_platform_check $board $1
 		return $?
 		;;
+	wifi-pineapple-tetra)
+		nand_do_platform_check $board $1
+		return $?
+		;;
 	cpe210|\
 	eap120|\
 	wbs210|\

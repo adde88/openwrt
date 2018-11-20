@@ -177,6 +177,7 @@ ar71xx_setup_interfaces()
 	tl-wr810n|\
 	tl-wr810n-v2|\
 	wpe72|\
+	wifi-pineapple-tetra|\
 	wrtnode2q)
 		ucidef_set_interfaces_lan_wan "eth1" "eth0"
 		;;

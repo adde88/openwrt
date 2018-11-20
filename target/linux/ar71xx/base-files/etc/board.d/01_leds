@@ -1023,6 +1023,11 @@ whr-hp-gn)
 wifi-pineapple-nano)
 	ucidef_set_led_wlan "wlan0" "WLAN0" "$board:blue:system" "phy0tpt"
 	;;
+wifi-pineapple-tetra)
+	ucidef_set_led_netdev "eth0" "ETH0" "$board:yellow" "eth0"
+	ucidef_set_led_netdev "wlan0" "WLAN0" "$board:blue" "wlan0"
+	ucidef_set_led_netdev "wlan1mon" "WLAN1MON" "$board:red" "wlan1mon"
+	;;
 wlae-ag300n)
 	ucidef_set_led_netdev "wireless" "WIRELESS" "buffalo:green:wireless" "wlan0"
 	;;

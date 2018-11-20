@@ -220,6 +220,9 @@ get_status_led() {
 	wifi-pineapple-nano)
 		status_led="$board:blue:system"
 		;;
+	wifi-pineapple-tetra)
+		status_led="$board:blue"
+		;;
 	eap300v2)
 		status_led="engenius:blue:power"
 		;;

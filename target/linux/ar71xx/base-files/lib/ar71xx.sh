@@ -1431,6 +1431,9 @@ ar71xx_board_detect() {
 	*"WiFi Pineapple NANO")
 		name="wifi-pineapple-nano"
 		;;
+	*"Hak5 WiFi Pineapple TETRA")
+                name="wifi-pineapple-tetra"
+                ;;
 	*"WLAE-AG300N")
 		name="wlae-ag300n"
 		;;

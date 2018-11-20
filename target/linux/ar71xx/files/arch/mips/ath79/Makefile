@@ -260,6 +260,7 @@ obj-$(CONFIG_ATH79_MACH_WAM250)			+= mach-wam250.o
 obj-$(CONFIG_ATH79_MACH_WEIO)			+= mach-weio.o
 obj-$(CONFIG_ATH79_MACH_WHR_HP_G300N)		+= mach-whr-hp-g300n.o
 obj-$(CONFIG_ATH79_MACH_WIFI_PINEAPPLE_NANO)	+= mach-wifi-pineapple-nano.o
+obj-$(CONFIG_ATH79_MACH_WIFI_PINEAPPLE_TETRA)	+= mach-wifi-pineapple-tetra.o
 obj-$(CONFIG_ATH79_MACH_WLAE_AG300N)		+= mach-wlae-ag300n.o
 obj-$(CONFIG_ATH79_MACH_WLR8100)		+= mach-wlr8100.o
 obj-$(CONFIG_ATH79_MACH_WNDAP360)		+= mach-wndap360.o
