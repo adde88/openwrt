@@ -740,7 +740,7 @@ define Image/Build/NetgearNAND
 	$(eval imageraw=$(KDIR_TMP)/$(2)-raw.img)
 	$(CP) $(KDIR)/root.squashfs-raw $(KDIR_TMP)/root.squashfs
 	echo -ne '\xde\xad\xc0\xde' > $(KDIR_TMP)/jffs2.eof
-	$(call ubinize,ubinize-$(9).ini,$(KDIR_TMP),$(KDIR_TMP)/$(2)-root.ubi,128KiB,2048,-E 5)
+	$(call ubinize,ubinize-$(9).ini,$(KDIR_TMP),$(KDIR_TMP)/$(2)-root.ubi,512KiB,4096,-E 5)
 	( \
 		dd if=$(KDIR_TMP)/vmlinux-$(2).uImage; \
 		dd if=$(KDIR_TMP)/$(2)-root.ubi \
