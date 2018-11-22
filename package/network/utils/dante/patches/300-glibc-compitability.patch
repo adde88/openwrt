@@ -1,0 +1,23 @@
+--- a/sockd/cpupolicy.c
++++ b/sockd/cpupolicy.c
+@@ -44,6 +44,7 @@
+ #define _GNU_SOURCE /* needed for SCHED_BATCH */
+
+ #include "common.h"
++#include "../include/sockd.h"
+
+ #include <sched.h>
+--- a/sockd/cpupolicy.c
++++ b/sockd/cpupolicy.c
+@@ -41,10 +41,9 @@
+  *
+  */
+ 
+-#define _GNU_SOURCE /* needed for SCHED_BATCH */
++#define _DEFAULT_SOURCE /* needed for SCHED_BATCH */
+ 
+ #include "common.h"
+-#include "../include/sockd.h"
+ 
+ #include <sched.h>
+ 
