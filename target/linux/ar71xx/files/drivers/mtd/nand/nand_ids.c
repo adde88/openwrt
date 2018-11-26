@@ -8,7 +8,8 @@
  * published by the Free Software Foundation.
  *
  */
-#include <linux/module.h>
+
+#include <linux/version.h>
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4,14,0)
 #include <linux/mtd/nand.h>
 #else
@@ -29,6 +30,7 @@
  * If page size and eraseblock size are 0, the sizes are taken from the
  * extended chip ID.
  */
+
 struct nand_flash_dev nand_flash_ids[] = {
 	/*
 	 * Some incompatible NAND chips share device ID's and so must be
@@ -188,26 +190,40 @@ struct nand_flash_dev nand_flash_ids[] = {
 };
 
 /* Manufacturer IDs */
-struct nand_manufacturers nand_manuf_ids[] = {
-	{NAND_MFR_TOSHIBA, "Toshiba"},
-	{NAND_MFR_SAMSUNG, "Samsung"},
+static const struct nand_manufacturer nand_manufacturers[] = {
+	{NAND_MFR_AMD, "AMD/Spansion"},
+	{NAND_MFR_ATO, "ATO"},
+	{NAND_MFR_EON, "Eon"},
+	{NAND_MFR_ESMT, "ESMT"},
 	{NAND_MFR_FUJITSU, "Fujitsu"},
+	{NAND_MFR_HYNIX, "Hynix"},
+	{NAND_MFR_INTEL, "Intel"},
+	{NAND_MFR_MACRONIX, "Macronix"},
+	{NAND_MFR_MICRON, "Micron"},
 	{NAND_MFR_NATIONAL, "National"},
 	{NAND_MFR_RENESAS, "Renesas"},
-	{NAND_MFR_STMICRO, "ST Micro"},
-	{NAND_MFR_HYNIX, "Hynix"},
-	{NAND_MFR_MICRON, "Micron"},
-	{NAND_MFR_AMD, "AMD/Spansion"},
-	{NAND_MFR_MACRONIX, "Macronix"},
-	{NAND_MFR_EON, "Eon"},
+	{NAND_MFR_SAMSUNG, "Samsung"},
 	{NAND_MFR_SANDISK, "SanDisk"},
-	{NAND_MFR_INTEL, "Intel"},
-	{0x0, "Unknown"}
+	{NAND_MFR_STMICRO, "ST Micro"},
+	{NAND_MFR_TOSHIBA, "Toshiba"},
+	{NAND_MFR_WINBOND, "Winbond"},
 };
 
-EXPORT_SYMBOL(nand_manuf_ids);
-EXPORT_SYMBOL(nand_flash_ids);
+/**
+ * nand_get_manufacturer - Get manufacturer information from the manufacturer
+ *			   ID
+ * @id: manufacturer ID
+ *
+ * Returns a pointer a nand_manufacturer object if the manufacturer is defined
+ * in the NAND manufacturers database, NULL otherwise.
+ */
+const struct nand_manufacturer *nand_get_manufacturer(u8 id)
+{
+	int i;
 
-MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Thomas Gleixner <tglx@linutronix.de>");
-MODULE_DESCRIPTION("Nand device & manufacturer IDs");
+	for (i = 0; i < ARRAY_SIZE(nand_manufacturers); i++)
+		if (nand_manufacturers[i].id == id)
+			return &nand_manufacturers[i];
+
+	return NULL;
+}
