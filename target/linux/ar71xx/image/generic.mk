@@ -1248,8 +1248,7 @@ TARGET_DEVICES += wam250
 define Device/wifi-pineapple-nano
   $(Device/tplink-16mlzma)
   DEVICE_TITLE := Hak5 WiFi Pineapple NANO
-  DEVICE_PACKAGES := kmod-ath9k-htc kmod-usb-core kmod-usb2 kmod-usb-storage \
-	-swconfig -uboot-envtools
+  DEVICE_PACKAGES := kmod-ath9k-htc kmod-usb-core kmod-usb2 kmod-usb-storage kmod-swconfig uboot-envtools
   BOARDNAME := WIFI-PINEAPPLE-NANO
   DEVICE_PROFILE := WIFIPINEAPPLENANO
   TPLINK_HWID := 0x4e414e4f

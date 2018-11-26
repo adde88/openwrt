@@ -274,7 +274,6 @@ wndr4300_mtdlayout=mtdparts=ar934x-nfc:256k(u-boot)ro,256k(u-boot-env)ro,256k(ca
 zcn1523h_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,6208k(rootfs),1472k(kernel),64k(configure)ro,64k(mfg)ro,64k(art)ro,7680k@0x50000(firmware)
 mynet_rext_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,7808k(firmware),64k(nvram)ro,64k(ART)ro
 zyx_nbg6716_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(env)ro,64k(RFdata)ro,-(nbu);ar934x-nfc:2048k(zyxel_rfsd),2048k(romd),1024k(header),2048k(kernel),-(ubi)
-wifi_pineapple_tetra_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,256k(u-boot-env),256k(caldata),-(mb0);ar934x-nfc:2048k(kernel),-(ubi)
 
 define Image/BuildKernel
 	cp $(KDIR)/vmlinux.elf $(VMLINUX).elf
@@ -1020,8 +1019,6 @@ ifeq ($(SUBTARGET),nand)
 $(eval $(call SingleProfile,NetgearNAND,64k,WNDR3700V4,wndr3700v4,WNDR3700_V4,ttyS0,115200,$$(wndr4300_mtdlayout),0x33373033,WNDR3700v4,"",-H 29763948+128+128,wndr4300))
 $(eval $(call SingleProfile,NetgearNAND,64k,WNDR4300V1,wndr4300,WNDR4300,ttyS0,115200,$$(wndr4300_mtdlayout),0x33373033,WNDR4300,"",-H 29763948+0+128+128+2x2+3x3,wndr4300))
 $(eval $(call SingleProfile,NetgearNAND,64k,R6100,r6100,R6100,ttyS0,115200,$$(r6100_mtdlayout),0x36303030,R6100,"",-H 29764434+0+128+128+2x2+2x2,wndr4300))
-
-$(eval $(call SingleProfile,NetgearNAND,64k,HAK5_WIFI_PINEAPPLE_TETRA,wifi-pineapple-tetra,WIFI-PINEAPPLE-TETRA,ttyS0,115200,$$(wifi_pineapple_tetra_mtdlayout),0x33373033,WIFI_PINEAPPLE_TETRA,"",-H 29763948+0+128+128+2x2+3x3,wifi-pineapple-tetra))
 
 $(eval $(call SingleProfile,ZyXELNAND,128k,NBG6716,nbg6716,NBG6716,ttyS0,115200,NBG6716,$$(zyx_nbg6716_mtdlayout),mem=256M))
 

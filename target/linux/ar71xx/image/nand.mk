@@ -106,11 +106,33 @@ define Device/z1
   BLOCKSIZE := 64k
   MTDPARTS := ar934x-nfc:128K(loader1)ro,8064K(kernel),128K(loader2)ro,8064K(recovery),114560K(ubi),128K(origcaldata)ro
   IMAGES := sysupgrade.tar
-  KERNEL := kernel-bin | patch-cmdline | MerakiNAND-old
+  KERNEL := kernel-bin | patch-cmdline
   KERNEL_INITRAMFS := kernel-bin | patch-cmdline | MerakiNAND-old
   IMAGE/sysupgrade.tar := sysupgrade-tar
 endef
 TARGET_DEVICES += z1
+
+define Device/wifi-pineapple-tetra
+  DEVICE_TITLE := Hak5 WiFi Pineapple TETRA
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-ledtrig-usbdev kmod-ath9k-htc
+  BOARDNAME := WIFI-PINEAPPLE-TETRA
+  PAGESIZE := 4096
+  BLOCKSIZE := 64k
+  MTDPARTS := spi0.0:256k(u-boot)ro,256k(u-boot-env),256k(caldata),2145m(mb0);ar934x-nfc:2048k(kernel),2046m(ubi)
+  CONSOLE := ttyS0,15200
+  KERNEL_SIZE := 2048k
+  IMAGE_SIZE := 29204k
+  IMAGES := factory.bin sysupgrade.tar
+  IMAGE/factory.bin := append-kernel | pad-to $$$$(KERNEL_SIZE) | append-ubi
+  IMAGE/sysupgrade.tar := sysupgrade-tar
+endef
+TARGET_DEVICES += wifi-pineapple-tetra
+
+#define LegacyDevice/wifi-pineapple-tetra
+#  DEVICE_TITLE := Hak5 WiFi Pineapple TETRA
+#  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-ledtrig-usbdev kmod-ath9k-htc
+#endef
+#LEGACY_DEVICES += Hak5 WiFi Pineapple TETRA
 
 define LegacyDevice/R6100
   DEVICE_TITLE := NETGEAR R6100
