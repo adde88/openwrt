@@ -1153,7 +1153,6 @@ ar934x_nfc_init_tail(struct mtd_info *mtd)
 	case 224:
 		ar934x_nfc_wr(nfc, AR934X_NFC_REG_SPARE_SIZE, mtd->oobsize);
 		break;
-
 	default:
 		dev_err(nfc->parent, "unsupported OOB size: %d bytes\n",
 			mtd->oobsize);
@@ -1335,6 +1334,9 @@ static int ar934x_nfc_ooblayout_free(struct mtd_info *mtd, int section,
 		oobregion->offset = 48;
 		oobregion->length = 16;
 		return 0;
+	case 2:
+		oobregion->offset = 76;
+                oobregion->length = 148;
 	default:
 		return -ERANGE;
 	}
@@ -1388,15 +1390,20 @@ ar934x_nfc_setup_hwecc(struct ar934x_nfc *nfc)
                 nand->ecc.size = 512;
                 nand->ecc.bytes = 7;
                 nand->ecc.strength = 4;
-                nand->ecc.layout = &ar934x_nfc_oob_224_hwecc;
-                 break;
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,6,0)
+		nand->ecc.layout = &ar934x_nfc_oob_224_hwecc;
+#else
+		mtd_set_ooblayout(mtd, &ar934x_nfc_ecclayout_ops);
+#endif
+		break;
 
          default:
                 dev_err(nfc->parent,
                         "hardware ECC is not available for %d byte pages\n",
-                        nfc->mtd.writesize);
+                        mtd->writesize);
                 return -EINVAL;
         }
+
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4,6,0)
 	BUG_ON(!nand->ecc.layout);
 #else
