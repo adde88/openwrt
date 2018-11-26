@@ -1,0 +1,13 @@
+--- a/ugps-2018-11-11-07528d43/nmea.c
++++ b/ugps-2018-11-11-07528d43/nmea.c
+@@ -16,7 +16,9 @@
+  *   Copyright (C) 2014 John Crispin <blogic@openwrt.org> 
+  */
+ 
+-#define _DEFAULT_SOURCE
++#ifndef _DEFAULT_SOURCE
++# define _DEFAULT_SOURCE
++#endif
+ #define _XOPEN_SOURCE
+ #define _BSD_SOURCE
+ #include <time.h>
